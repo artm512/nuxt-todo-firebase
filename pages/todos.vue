@@ -8,18 +8,27 @@
     </div>
     <ul>
       <li v-for="todo in todos" :key="todo.id">
-        <input type="checkbox" :checked="todo.done" @change="toggle(todo)" />
-        <span :class="{ done: todo.done }"
-          >{{ todo.name }} {{ todo.created }}</span
-        >
-        <button @click="remove(todo.id)">×</button>
+        <span v-if="todo.created">
+          <input type="checkbox" :checked="todo.done" @change="toggle(todo)" />
+          <span :class="{ done: todo.done }"
+            >{{ todo.name }} {{ todo.created.toDate() | dataFilter }}</span
+          >
+          <button @click="remove(todo.id)">×</button>
+        </span>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
+  filters: {
+    dataFilter(date) {
+      return moment(date).format('YYYY/MM/DD HH:mm:ss')
+    },
+  },
   data() {
     return {
       name: '',
@@ -50,7 +59,7 @@ export default {
 </script>
 
 <style>
-li > .done {
+li .done {
   text-decoration: line-through;
 }
 </style>

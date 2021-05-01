@@ -16,6 +16,7 @@
     "ant-design-vue": "^1.7.4",
     "core-js": "^3.9.1",
     "firebase": "^8.4.3",
+    "moment": "^2.29.1",
     "nuxt": "^2.15.3",
     "vuexfire": "^3.2.5"
   },
