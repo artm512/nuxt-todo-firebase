@@ -8,7 +8,8 @@
     </div>
     <ul>
       <li v-for="todo in todos" :key="todo.id">
-        {{ todo }}
+        {{ todo.done }} {{ todo.name }} {{ todo.created }}
+        <button @click="remove(todo.id)">×</button>
       </li>
     </ul>
   </div>
@@ -34,6 +35,9 @@ export default {
     add() {
       this.$store.dispatch('todos/add', this.name)
       this.name = ''
+    },
+    remove(id) {
+      this.$store.dispatch('todos/remove', id)
     },
   },
 }
