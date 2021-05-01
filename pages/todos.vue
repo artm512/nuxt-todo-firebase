@@ -6,6 +6,11 @@
         <button>Add</button>
       </form>
     </div>
+    <ul>
+      <li v-for="todo in todos" :key="todo.id">
+        {{ todo }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -16,6 +21,11 @@ export default {
       name: '',
       done: false,
     }
+  },
+  computed: {
+    todos() {
+      return this.$store.state.todos.todos
+    },
   },
   created() {
     this.$store.dispatch('todos/init')
