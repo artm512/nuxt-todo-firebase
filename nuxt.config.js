@@ -1,3 +1,5 @@
+import webpack from 'webpack'
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -34,10 +36,15 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/dotenv'
-  ],
+  modules: ['@nuxtjs/dotenv'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    plugins: [
+      new webpack.ProvidePlugin({
+        // グローバルモジュール
+        _: 'lodash',
+      }),
+    ],
+  },
 }

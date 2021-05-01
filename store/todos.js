@@ -35,3 +35,10 @@ export const actions = {
     })
   }),
 }
+
+export const getters = {
+  orderedTodos(state) {
+    // eslint-disable-next-line no-undef
+    return _.sortBy(state.todos, 'created')
+  },
+}
